@@ -10,32 +10,32 @@
 
 	<div class="container">
 		<div id="app">
-			<form action="done.html" @submit.prevent="handleIt">
-				<button type="submit" class="btn btn-primary">Submit Me!</button>
-			</form>
-			
-			<button type="submit" class="btn btn-primary" @click="addOne">I have been clicked {{ count }} times</button>
+			<counter subject="Likes"></counter>
+			<counter subject="Dislikes"></counter>
 		</div>
 	</div>
 
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.min.js"></script>
+	<template id="counter-template">
+		<div class="counter">
+			<h1>{{ subject }}</h1>
+			<button class="btn btn-primary" @click="count += 1">Clicked {{ count }} times</button>
+		</div>
+	</template>
+
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.js"></script>
 
 	<script>
-		new Vue({
-			el : "#app",
-			data : {
-				count : 0
-			},
-			methods : {
-				handleIt : function()
-				{
-					console.log("Event handled!");
-				},
-				addOne : function()
-				{
-					this.count += 1;
-				}
+
+		Vue.component('counter', {
+			template : '#counter-template',
+			props : ['subject'],
+			data : function() {
+				return { count: 0 };
 			}
+		});
+
+		new Vue({
+			el : "#app"
 		});
 	</script>
 </body>
