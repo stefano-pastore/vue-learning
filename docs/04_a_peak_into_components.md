@@ -52,6 +52,6 @@ al tag html personalizzato;
 * `props` sta per *properties* e indica quali proprietà del tag html
 personalizzato utilizzare;
 * `data` contiene i dati da associare, ma diversamente da quanto visto
-fin'ora, per garantire che ogni componente abbia una varaibile `count`
+fin'ora, per garantire che ogni componente abbia una variabile `count`
 differente e non condivisa, la racchiudiamo all'interno di una funzione
 anonima.
