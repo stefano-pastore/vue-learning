@@ -10,18 +10,11 @@
 
 	<div class="container">
 		<div id="app">
-			<form >
-				<span class="error" v-show="!message">
-					You must enter a message
-				</span>
-
-				<textarea v-model="message"></textarea>
-
-				<button class="btn btn-primary" type="submit" v-show="message">Send Message</button>
+			<form action="done.html" @submit.prevent="handleIt">
+				<button type="submit" class="btn btn-primary">Submit Me!</button>
 			</form>
-
-			<pre>{{ $data | json }}</pre>
-
+			
+			<button type="submit" class="btn btn-primary" @click="addOne">I have been clicked {{ count }} times</button>
 		</div>
 	</div>
 
@@ -29,9 +22,19 @@
 
 	<script>
 		new Vue({
-			el : '#app',
+			el : "#app",
 			data : {
-				message : ''
+				count : 0
+			},
+			methods : {
+				handleIt : function()
+				{
+					console.log("Event handled!");
+				},
+				addOne : function()
+				{
+					this.count += 1;
+				}
 			}
 		});
 	</script>
