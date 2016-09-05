@@ -10,33 +10,37 @@
 
 	<div class="container">
 		<div id="app">
-			<counter subject="Likes"></counter>
-			<counter subject="Dislikes"></counter>
+			<p> {{ fullName }} </p>
+			<p> Livello {{ level }} </p>
+			<input v-model="firstName" />
+			<input v-model="lastName" />
+			<input v-model="points" />
 		</div>
 	</div>
-
-	<template id="counter-template">
-		<div class="counter">
-			<h1>{{ subject }}</h1>
-			<button class="btn btn-primary" @click="count += 1">Clicked {{ count }} times</button>
-		</div>
-	</template>
 
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.js"></script>
 
 	<script>
 
-		Vue.component('counter', {
-			template : '#counter-template',
-			props : ['subject'],
-			data : function() {
-				return { count: 0 };
+		new Vue({
+			el : "#app",
+			data : {
+				points : 0,
+				firstName : 'Mario',
+				lastName : 'Rossi'
+			},
+			computed : {
+				level : function() {
+					if (this.points < 100) return 'Principiante';
+					else if (this.points > 100 && this.points < 500) return 'Intermedio';
+					else return 'Esperto';
+				},
+				fullName : function() {
+					return this.firstName + ' ' + this.lastName;
+				}
 			}
 		});
 
-		new Vue({
-			el : "#app"
-		});
 	</script>
 </body>
 </html>
