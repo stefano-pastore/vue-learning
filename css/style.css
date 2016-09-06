@@ -25,3 +25,8 @@ pre
 {
 	margin-top: 1.2em;
 }
+
+.task-completed
+{
+	text-decoration: line-through;
+}
