@@ -1,3 +1,14 @@
+Vue.component('tasks-component', {
+	props : ['list'],
+	template : '#tasks-template',
+	methods : {
+		toggleCompleted : function(task)
+		{
+			task.completed = !task.completed;
+		}
+	}
+});
+
 new Vue({
 	el : '#app',
 	data : {
@@ -7,11 +18,5 @@ new Vue({
 			{ body : 'Prepare lunch', completed: true },
 			{ body : 'Pick up kids from school', completed: false }
 		]
-	},
-	methods : {
-		toggleCompleted : function(task)
-		{
-			task.completed = !task.completed;
-		}
 	}
 });
