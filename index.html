@@ -9,19 +9,36 @@
 <body>
 
 	<div class="container">
+	<h1> The Great Task Manager </h1>
 		<div id="app">
 			<tasks-component :list="tasks"></tasks-component>
+			<task-form-component :list="tasks"></task-form-component>
 		</div>
 	</div>
 
+	<template id="task-form-template">
+		<div class="task-section">
+			<h2> Add a New Task </h2>
+			<input type="text" v-model="task" placeholder="Add a new task here" />
+			<button class="btn btn-primary" @click="addNewTask(task)" v-show="task">Add Task</button>
+		</div>
+	</template>
+
 	<template id="tasks-template">
-		<ul>
-			<li :class="{'task-completed' : task.completed}" 
-				v-for="task in list"
-				@click="toggleCompleted(task)">
-				{{ task.body }}
-			</li>
-		</ul>
+		<div class="task-section">
+			<h2> My Tasks <span class="remaining-tasks" v-show="remainingTasks">({{ remainingTasks }})</span></h2>
+			<ul v-show="list.length">
+				<li :class="{'task-completed' : task.completed}" 
+					v-for="task in list"
+					@click="toggleCompleted(task)">
+					{{ task.body }}
+					<button class="btn btn-danger" @click="deleteTask(task)">Delete</button>
+				</li>
+			</ul>
+			<div class="alert alert-info" v-else>
+			<p> No tasks yet! </p>
+			</div>
+		</div>
 	</template>
 
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.js"></script>
